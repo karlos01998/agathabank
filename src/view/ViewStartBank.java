@@ -39,21 +39,21 @@ public class ViewStartBank {
         return write.nextInt();
     }
 
-    public int displayLoginMenuCountApp() {
-        viewFunctionBank.clearDisplay();
+
+
+    public void displayLoginError() {
         System.out.println("""
                 
                       |- AgathaBank -|
+                       
+                
+                            ERRO!
+                            
+                      Dados INCORRETOS!
                 
                 
                 
-                  Qual a conta para Login:
-                
-                      Conta Corrente [1]
-                      Conta Poupança [2]
-                          SAIR [99]
                 """);
-        return write.nextInt();
     }
 
     public int displayCreateCountMenuApp() {
@@ -64,7 +64,7 @@ public class ViewStartBank {
                 
                 
                 
-                  Digite a opcao desejada:
+                  Qual Conta deseja abrir:
                 
                       Conta Corrente [1]
                       Conta Poupança [2]

@@ -1,14 +1,15 @@
 package model;
 
-public class ModelBank {
+abstract class ModelBank {
     private int numberCPF;
     private String nameUser;
     private int dayBirth;
     private int monthBirth;
     private int yearBirth;
     private int password;
+    private double balance;
 
-    public ModelBank(int cpf, String name, int year, int month, int day) {
+    protected ModelBank(int cpf, String name, int year, int month, int day) {
         this.nameUser = name;
         this.numberCPF = cpf;
         this.yearBirth = year;
@@ -16,51 +17,61 @@ public class ModelBank {
         this.dayBirth = day;
     }
 
-    public ModelBank(int cpf, String name, int year, int month, int day, int password) {
+    protected ModelBank(int cpf, String name, int year, int month, int day, int password, double balance) {
         this(cpf, name, year, month, day);
         this.password = password;
+        this.balance = balance;
     }
 
-    public int getNumberCPF() {
+    protected int getNumberCPF() {
         return numberCPF;
     }
 
-    public String getNameUser() {
+    protected String getNameUser() {
+
         return nameUser;
     }
 
-    public void setNameUser(String nameUser) {
+    protected void setNameUser(String nameUser) {
         this.nameUser = nameUser;
     }
 
-    public int getDayBirth() {
+    protected int getDayBirth() {
         return dayBirth;
     }
 
-    public void setDayBirth(int dayBirth) {
+    protected void setDayBirth(int dayBirth) {
         this.dayBirth = dayBirth;
     }
 
-    public int getMonthBirth() {
+    protected int getMonthBirth() {
         return monthBirth;
     }
 
-    public void setMonthBirth(int monthBirth) {
+    protected void setMonthBirth(int monthBirth) {
         this.monthBirth = monthBirth;
     }
 
-    public int getYearBirth() {
+    protected int getYearBirth() {
         return yearBirth;
     }
 
-    public void setYearBirth(int yearBirth) {
+    protected void setYearBirth(int yearBirth) {
         this.yearBirth = yearBirth;
     }
 
-    public int getPassword() {
+    protected int getPassword() {
         return password;
     }
-    public void setPassword(int password) {
+
+    protected void setPassword(int password) {
         this.password = password;
+    }
+
+    protected double getBalance() {
+        return balance;
+    }
+    protected void setBalance(double balance) {
+        this.balance = balance;
     }
 }

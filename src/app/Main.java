@@ -1,24 +1,40 @@
 package app;
 
+import controller.ControllerLoginCurrentBank;
 import controller.ControllerStartBank;
-import controller.ControllerCreateCountBank;
+import controller.ControllerCreateCurrentBank;
 import controller.ControllerCountBank;
-import controller.ControllerLoginBank;
 
 public class Main {
     public static void main(String[] args) {
 
         ControllerStartBank controllerStartBank = new ControllerStartBank();
-        ControllerCreateCountBank controllerCreateCountBank = new ControllerCreateCountBank();
+        ControllerCreateCurrentBank controllerCreateCountBank = new ControllerCreateCurrentBank();
         ControllerCountBank controllerCountBank = new ControllerCountBank();
-        //ControllerLoginBank controllerLoginBank = new ControllerLoginBank();
+        ControllerLoginCurrentBank controllerLoginCurrentBank = new ControllerLoginCurrentBank();
 
-        //Inicia o app e chama o primeiro metodo de escolha que devolve a variavel de escolha
+        //Inicia o app e chama o primeiro metodo de escolha que alimenta a variavel de escolha
         controllerStartBank.startApp();
+
         int choose = controllerStartBank.startDisplayMenu();
+
         if (choose == 99) {
             controllerStartBank.ExitApp();
             System.exit(0);
+
+        } else if (choose == 1) {
+            choose = controllerStartBank.startDisplayMenuLogin();
+
+            if (choose == 99) {
+                controllerStartBank.ExitApp();
+                System.exit(0);
+
+            } else if (choose == 1) {
+                controllerLoginCurrentBank.startLoginCurrentBank();
+            }
+
+        } else if (choose == 2) {
+            controllerStartBank.startDisplayMenuCreateCount();
         }
 
         //Recebe a variavel de escolha do primeiro metodo e chama o metodo de escolha em tipo de conta
@@ -27,10 +43,10 @@ public class Main {
             System.exit(0);
 
         } else if (choose == 1) {
-                choose += controllerStartBank.startDisplayMenuCountApp() + 1;
-            } else if (choose == 2) {
+            choose += controllerStartBank.startDisplayMenuCreateCount() + 1;
+        } else if (choose == 2) {
 
-            }
+        }
 
         if (choose == 3) {
 
