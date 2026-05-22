@@ -21,7 +21,7 @@ public class ViewFunctionBank {
     }
 
     public void DisplayPause() {
-        System.out.println("Duplo enter para PROSSEGUIR...");
+        System.out.println("   Enter para PROSSEGUIR...");
         write.nextLine();
     }
 
@@ -51,8 +51,24 @@ public class ViewFunctionBank {
                       |- AgathaBank -|
                 
                 
-                
                      Escolha Incorreta
+                
+                """);
+        DisplayPause();
+    }
+
+    public void errorLogin(){
+        System.out.println("""
+                
+                      |- AgathaBank -|
+                       
+                
+                            ERRO!
+                            
+                      Dados INCORRETOS!
+                
+                
+                
                 """);
         DisplayPause();
     }

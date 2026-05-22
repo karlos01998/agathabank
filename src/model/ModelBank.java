@@ -1,7 +1,9 @@
 package model;
 
+import java.util.ArrayList;
+
 abstract class ModelBank {
-    private int numberCPF;
+    private Long numberCPF;
     private String nameUser;
     private int dayBirth;
     private int monthBirth;
@@ -9,7 +11,7 @@ abstract class ModelBank {
     private int password;
     private double balance;
 
-    protected ModelBank(int cpf, String name, int year, int month, int day) {
+    protected ModelBank(long cpf, String name, int year, int month, int day) {
         this.nameUser = name;
         this.numberCPF = cpf;
         this.yearBirth = year;
@@ -17,61 +19,84 @@ abstract class ModelBank {
         this.dayBirth = day;
     }
 
-    protected ModelBank(int cpf, String name, int year, int month, int day, int password, double balance) {
+    protected ModelBank(long cpf, String name, int year, int month, int day, int password) {
         this(cpf, name, year, month, day);
         this.password = password;
+    }
+
+    protected ModelBank(long cpf, String name, int year, int month, int day, int password, double balance) {
+        this(cpf, name, year, month, day, password);
         this.balance = balance;
     }
 
-    protected int getNumberCPF() {
-        return numberCPF;
+    ArrayList<ModelBank> bankCount = new ArrayList<>();
+
+    public ModelBank getCountCPF(long cpf) {
+        for (ModelBank savingsBank : bankCount) {
+            if (savingsBank.getNumberCPF() == cpf) {
+                return savingsBank;
+            }
+        }
+        return null;
     }
 
-    protected String getNameUser() {
+    public boolean getCountLogin(long cpf, int password) {
+        ModelBank conta = getCountCPF(cpf);
+        if (conta != null && conta.getPassword() == password) {
+            return true;
+        }
+        return false;
+    }
 
+    public long getNumberCPF() {
+        return this.numberCPF;
+    }
+
+    public String getNameUser() {
         return nameUser;
     }
 
-    protected void setNameUser(String nameUser) {
+    public void setNameUser(String nameUser) {
         this.nameUser = nameUser;
     }
 
-    protected int getDayBirth() {
+    public int getDayBirth() {
         return dayBirth;
     }
 
-    protected void setDayBirth(int dayBirth) {
+    public void setDayBirth(int dayBirth) {
         this.dayBirth = dayBirth;
     }
 
-    protected int getMonthBirth() {
+    public int getMonthBirth() {
         return monthBirth;
     }
 
-    protected void setMonthBirth(int monthBirth) {
+    public void setMonthBirth(int monthBirth) {
         this.monthBirth = monthBirth;
     }
 
-    protected int getYearBirth() {
+    public int getYearBirth() {
         return yearBirth;
     }
 
-    protected void setYearBirth(int yearBirth) {
+    public void setYearBirth(int yearBirth) {
         this.yearBirth = yearBirth;
     }
 
-    protected int getPassword() {
+    public int getPassword() {
         return password;
     }
 
-    protected void setPassword(int password) {
+    public void setPassword(int password) {
         this.password = password;
     }
 
-    protected double getBalance() {
+    public double getBalance() {
         return balance;
     }
-    protected void setBalance(double balance) {
+
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 }

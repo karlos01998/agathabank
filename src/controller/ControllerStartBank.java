@@ -1,59 +1,82 @@
 package controller;
 
-import view.ViewStartBank;
 import view.ViewFunctionBank;
-import view.ViewLoginBank;
 
 public class ControllerStartBank {
-    ViewStartBank viewStartBank = new ViewStartBank();
     ViewFunctionBank viewFunctionBank = new ViewFunctionBank();
-    ViewLoginBank viewLoginBank = new ViewLoginBank();
+    ControllerFunctionsBank controllerFunctionsBank = new ControllerFunctionsBank();
 
-    public void startApp() {
-        viewStartBank.displayStartApp();
+    public void startDisplaySwitchApp() {
+        int choose = 0;
+        controllerFunctionsBank.startApp();
+        choose = controllerFunctionsBank.startDisplayMenu();
+        do {
+            switch (choose) {
+                case 1:
+                    controllerFunctionsBank.startDisplayMenuLogin();
+                    break;
+
+                case 2:
+                    controllerFunctionsBank.startDisplayMenuCreateCount();
+                    break;
+
+                case 3:
+                    controllerFunctionsBank.exitApp();
+                    break;
+
+                default:
+                    controllerFunctionsBank.chooseError();
+                    startDisplaySwitchApp();
+            }
+        } while (choose != 3);
     }
 
-    public int startDisplayMenu() {
-        int choose = viewStartBank.displayStartMenuApp();
-        startDisplaySwitchApp(choose);
-        return choose;
+    public void startDisplayLoginApp() {
+        int choose = 0;
+        choose = controllerFunctionsBank.startDisplayMenuLogin();
+        do {
+            switch (choose) {
+                case 1:
+                    controllerFunctionsBank.startDisplayMenuLoginCurrentCPF();
+                    break;
+
+                case 2:
+                    controllerFunctionsBank.startDisplayMenuLoginSavingsCPF();
+                    break;
+
+                case 3:
+                    controllerFunctionsBank.exitApp();
+                    break;
+
+                default:
+                    controllerFunctionsBank.chooseError();
+                    startDisplaySwitchApp();
+            }
+        } while (choose != 3);
     }
 
-    public int startDisplayMenuLogin(){
-        int choose = viewLoginBank.displayLoginMenuCountApp();
-        startDisplaySwitchApp(choose);
-        return choose;
+    public void startDisplayCreateCountApp() {
+        int choose = 0;
+        choose = controllerFunctionsBank.startDisplayMenuCreateCount();
+        do {
+            switch (choose) {
+                case 1:
+                    controllerFunctionsBank.startDisplayMenuLoginCurrentCPF();
+                    break;
+
+                case 2:
+                    controllerFunctionsBank.startDisplayMenuLoginSavingsCPF();
+                    break;
+
+                case 3:
+                    controllerFunctionsBank.exitApp();
+                    break;
+
+                default:
+                    controllerFunctionsBank.chooseError();
+                    startDisplaySwitchApp();
+            }
+        } while (choose != 3);
     }
 
-    public void startDisplayMenuLoginCurrent(){
-        int idCPF = viewLoginBank.displayLoginCountCurrentCPF();
-
-    }
-
-    public int startDisplayMenuCreateCount() {
-        int choose = viewStartBank.displayCreateCountMenuApp();
-        startDisplaySwitchApp(choose);
-        return choose;
-    }
-
-    public int startDisplaySwitchApp(int choose) {
-        switch (choose) {
-            case 1:
-                return 1;
-
-            case 2:
-                return 2;
-
-            case 99:
-                return 99;
-
-            default:
-                viewFunctionBank.displayChooseError();
-                return choose;
-        }
-    }
-
-    public void ExitApp() {
-        viewFunctionBank.displayExitApp();
-    }
 }

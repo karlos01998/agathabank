@@ -34,7 +34,7 @@ public class ViewStartBank {
                 
                       Fazer Login [1]
                       Criar Conta [2]
-                         SAIR [99]
+                         SAIR [3]
                 """);
         return write.nextInt();
     }
@@ -68,7 +68,7 @@ public class ViewStartBank {
                 
                       Conta Corrente [1]
                       Conta Poupança [2]
-                          SAIR [99]
+                          SAIR [3]
                 """);
         return write.nextInt();
     }

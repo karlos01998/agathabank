@@ -3,37 +3,56 @@ package model;
 import java.util.ArrayList;
 
 public class ModelCurrentBank extends ModelBank {
-    public ModelCurrentBank(int cpf, String name, int year, int month, int day) {
-        super(cpf, name, year, month, day); // Substitua o vazio por isso
+
+    boolean debt;
+    double debtBalance;
+    boolean creditCard;
+    double creditCardBalance;
+    boolean loan;
+    double loanBalance;
+
+    public ModelCurrentBank(long cpf, String name, int year, int month, int day) {
+        super(cpf, name, year, month, day);
     }
 
-    public ModelCurrentBank(int cpf, String name, int year, int month, int day, int password) {
-        super(cpf, name, year, month, day); // Inicializa a mãe com os 5 parâmetros
-        // Se precisar repassar a senha para a classe mãe e ela tiver um setter:
-        this.setPassword(password);
+    public ModelCurrentBank(long cpf, String name, int year, int month, int day, int password) {
+        super(cpf, name, year, month, day, password);
     }
 
-    ArrayList<ModelCurrentBank> currentCount = new ArrayList<>();
-
-    public ModelCurrentBank() {
-        super(0, "Sem Nome", 2000, 1, 1); // Valores padrão para não quebrar a regra da mãe
+    public ModelCurrentBank(long cpf, String name, int year, int month, int day, int password, double balance) {
+        super(cpf, name, year, month, day, password, balance);
+    }
+    public ModelCurrentBank(long cpf, String name, int year, int month, int day, int password,
+                            double balance, boolean debt, boolean creditCard, boolean loan) {
+        super(cpf, name, year, month, day, password, balance);
+        this.debt = debt;
+        this.creditCard = creditCard;
+        this.loan = loan;
     }
 
-    public boolean getCurrentCountCPF(int cpf) {
-        for (ModelCurrentBank currentBank : currentCount) {
-            if (currentBank.getNumberCPF() == cpf) {
-                return true;
-            }
-        }
-        return false;
+    public boolean isCreditCard() {
+        return creditCard;
+    }
+    public void setCreditCard(boolean creditCard) {
+        this.creditCard = creditCard;
+    }
+    public double getCreditCardBalance() {
+        return creditCardBalance;
+    }
+    public void setCreditCardBalance(double creditCardBalance) {
+        this.creditCardBalance = creditCardBalance;
+    }
+    public boolean isLoan() {
+        return loan;
+    }
+    public void setLoan(boolean loan) {
+        this.loan = loan;
+    }
+    public double getLoanBalance() {
+        return loanBalance;
+    }
+    public void setLoanBalance(double loanBalance) {
+        this.loanBalance = loanBalance;
     }
 
-    public boolean getCurrentCountPassword(int password) {
-        for (ModelCurrentBank currentBank : currentCount) {
-            if (currentBank.getPassword() == password) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

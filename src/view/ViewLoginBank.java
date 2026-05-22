@@ -1,6 +1,7 @@
 package view;
 
 import java.util.Scanner;
+
 import view.ViewFunctionBank;
 
 public class ViewLoginBank {
@@ -20,12 +21,14 @@ public class ViewLoginBank {
                 
                       Conta Corrente [1]
                       Conta Poupança [2]
-                          SAIR [99]
+                          SAIR [3]
                 """);
         return write.nextInt();
     }
 
-    public int displayLoginCountCurrentCPF() {
+    // Telas de Login Conta Current
+
+    public long displayLoginCountCurrentCPF() {
         viewFunctionBank.clearDisplay();
         System.out.println("""
                 
@@ -39,7 +42,7 @@ public class ViewLoginBank {
                 
                 
                 """);
-        return write.nextInt();
+        return write.nextLong();
     }
 
     public int displayLoginCountCurrentPassword() {
@@ -59,19 +62,41 @@ public class ViewLoginBank {
         return write.nextInt();
     }
 
-    public void errorLogin(){
+    //Telas de login Conta Savings
+
+    public long displayLoginCountSavingsCPF() {
+        viewFunctionBank.clearDisplay();
         System.out.println("""
                 
                       |- AgathaBank -|
-                       
+                       Conta Corrente
                 
-                            ERRO!
-                            
-                      Dados INCORRETOS!
+                
+                   Digite o CPF para Login:
+                
                 
                 
                 
                 """);
-        viewFunctionBank.DisplayPause();
+        return write.nextLong();
     }
+
+    public int displayLoginCountSavingsPassword() {
+        viewFunctionBank.clearDisplay();
+        System.out.println("""
+                
+                      |- AgathaBank -|
+                       Conta Corrente
+                
+                
+                  Digite a SENHA para Login:
+                
+                
+                
+                
+                """);
+        return write.nextInt();
+    }
+
+
 }
