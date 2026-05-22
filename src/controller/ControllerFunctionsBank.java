@@ -24,14 +24,6 @@ public class ControllerFunctionsBank {
         return viewLoginBank.displayLoginMenuCountApp();
     }
 
-    public void startDisplayMenuLoginCurrentCPF() {
-        long idCPF = viewLoginBank.displayLoginCountCurrentCPF();
-    }
-
-    public void startDisplayMenuLoginSavingsCPF() {
-        long idCPF = viewLoginBank.displayLoginCountSavingsCPF();
-    }
-
     public int startDisplayMenuCreateCount() {
         return viewStartBank.displayCreateCountMenuApp();
     }

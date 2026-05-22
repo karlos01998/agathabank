@@ -1,23 +1,28 @@
 package controller;
 
-import view.ViewFunctionBank;
-
 public class ControllerStartBank {
-    ViewFunctionBank viewFunctionBank = new ViewFunctionBank();
     ControllerFunctionsBank controllerFunctionsBank = new ControllerFunctionsBank();
+    ControllerLoginCurrentBank controllerLoginCurrentBank = new ControllerLoginCurrentBank();
+    ControllerLoginSavingsBank controllerLoginSavingsBank = new ControllerLoginSavingsBank();
+    ControllerCreateCurrentBank controllerCreateCurrentBank = new ControllerCreateCurrentBank();
+    ControllerCreateSavingsBank controllerCreateSavingsBank = new ControllerCreateSavingsBank();
 
     public void startDisplaySwitchApp() {
         int choose = 0;
+
         controllerFunctionsBank.startApp();
+        controllerCreateCurrentBank.modelCurrentBankCreate();
+        controllerCreateSavingsBank.modelSavingsBankCreate();
+
         choose = controllerFunctionsBank.startDisplayMenu();
         do {
             switch (choose) {
                 case 1:
-                    controllerFunctionsBank.startDisplayMenuLogin();
+                    startDisplayLoginApp();
                     break;
 
                 case 2:
-                    controllerFunctionsBank.startDisplayMenuCreateCount();
+                    startDisplayCreateCountApp();
                     break;
 
                 case 3:
@@ -37,11 +42,11 @@ public class ControllerStartBank {
         do {
             switch (choose) {
                 case 1:
-                    controllerFunctionsBank.startDisplayMenuLoginCurrentCPF();
+                    controllerLoginCurrentBank.startDisplayMenuLoginCurrentCPF();
                     break;
 
                 case 2:
-                    controllerFunctionsBank.startDisplayMenuLoginSavingsCPF();
+                    controllerLoginSavingsBank.startDisplayMenuLoginSavingsCPF();
                     break;
 
                 case 3:
@@ -61,11 +66,11 @@ public class ControllerStartBank {
         do {
             switch (choose) {
                 case 1:
-                    controllerFunctionsBank.startDisplayMenuLoginCurrentCPF();
+                    controllerLoginCurrentBank.startDisplayMenuLoginCurrentCPF();
                     break;
 
                 case 2:
-                    controllerFunctionsBank.startDisplayMenuLoginSavingsCPF();
+                    controllerLoginSavingsBank.startDisplayMenuLoginSavingsCPF();
                     break;
 
                 case 3:

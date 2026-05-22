@@ -2,6 +2,8 @@ package view;
 
 import java.util.Scanner;
 
+import model.ModelCurrentBank;
+import model.ModelSavingsBank;
 import view.ViewFunctionBank;
 
 public class ViewLoginBank {
@@ -98,5 +100,26 @@ public class ViewLoginBank {
         return write.nextInt();
     }
 
+    public void countDataTest(ModelCurrentBank conta) {
+        System.out.println("""
+                
+                      |- AgathaBank -|
+                       Conta Corrente
+                
+                """);
+        System.out.println(conta);
+
+    }
+
+    public void countDataTest(ModelSavingsBank conta) {
+        System.out.println("""
+                
+                      |- AgathaBank -|
+                       Conta Corrente
+                
+                """);
+        System.out.println(conta);
+
+    }
 
 }

@@ -72,4 +72,36 @@ public class ViewFunctionBank {
                 """);
         DisplayPause();
     }
+
+    public void displaycount() {
+        System.out.println("""
+                
+                
+                
+                
+                
+                      |- AgathaBank -|
+                
+                
+                
+                       Conta Valida!
+                """);
+        DisplayPause();
+    }
+
+    public void errorLoginExced() {
+        System.out.println("""
+                
+                
+                
+                
+                
+                      |- AgathaBank -|
+                
+                
+                
+                      Acesso Bloqueado!
+                """);
+        DisplayPause();
+    }
 }

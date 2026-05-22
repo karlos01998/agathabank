@@ -48,6 +48,20 @@ abstract class ModelBank {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "ModelBank{" +
+                "balance=" + balance +
+                ", numberCPF=" + numberCPF +
+                ", nameUser='" + nameUser + '\'' +
+                ", dayBirth=" + dayBirth +
+                ", monthBirth=" + monthBirth +
+                ", yearBirth=" + yearBirth +
+                ", password=" + password +
+                ", bankCount=" + bankCount +
+                '}';
+    }
+
     public long getNumberCPF() {
         return this.numberCPF;
     }
@@ -99,4 +113,5 @@ abstract class ModelBank {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
 }

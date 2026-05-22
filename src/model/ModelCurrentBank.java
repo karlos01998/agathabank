@@ -30,6 +30,24 @@ public class ModelCurrentBank extends ModelBank {
         this.loan = loan;
     }
 
+    @Override
+    public String toString() {
+        return "DADOS BANCARIOS" + '\n' +
+                "Saldo: " + getBalance() + '0' +'\n' +
+                "CPF: " + getNumberCPF() +'\n' +
+                "Nome: " + getNameUser() + '\'' +'\n' +
+                "Aniversario: " + '\n' + getDayBirth() +'/' +
+                 getMonthBirth() +
+                "/" + getYearBirth() +'\n' +
+                "SENHA: " + getPassword() +'\n' +
+                "Cartao de Credito? " + creditCard +'\n' +
+                "Limite no cartao: " + creditCardBalance +'\n' +
+                "Divida? " + debt +'\n' +
+                "Saldo devedor: " + debtBalance +'\n' +
+                "Emprestimo Disponivel: " + loan +'\n' +
+                "Valor do emprestimo: " + loanBalance ;
+    }
+
     public boolean isCreditCard() {
         return creditCard;
     }

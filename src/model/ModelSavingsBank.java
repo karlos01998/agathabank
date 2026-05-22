@@ -18,6 +18,13 @@ public class ModelSavingsBank extends ModelBank {
     }
 
     @Override
+    public String toString() {
+        return "ModelSavingsBank{" +
+                "bankCount=" + bankCount +
+                '}';
+    }
+
+    @Override
     public void setBalance(double balance) {
         if (balance < 0) {
 
