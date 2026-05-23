@@ -1,18 +1,22 @@
 package controller;
 
+import repository.RepositoryCurrentBank;
+import repository.RepositorySavingsBank;
+
 public class ControllerStartBank {
     ControllerFunctionsBank controllerFunctionsBank = new ControllerFunctionsBank();
     ControllerLoginCurrentBank controllerLoginCurrentBank = new ControllerLoginCurrentBank();
     ControllerLoginSavingsBank controllerLoginSavingsBank = new ControllerLoginSavingsBank();
-    ControllerCreateCurrentBank controllerCreateCurrentBank = new ControllerCreateCurrentBank();
-    ControllerCreateSavingsBank controllerCreateSavingsBank = new ControllerCreateSavingsBank();
+    RepositorySavingsBank repositorySavingsBank = new RepositorySavingsBank();
+    RepositoryCurrentBank repositoryCurrentBank = new RepositoryCurrentBank();
+
 
     public void startDisplaySwitchApp() {
         int choose = 0;
 
         controllerFunctionsBank.startApp();
-        controllerCreateCurrentBank.modelCurrentBankCreate();
-        controllerCreateSavingsBank.modelSavingsBankCreate();
+        repositoryCurrentBank.modelCurrentBankCreate();
+        repositorySavingsBank.modelSavingsBankCreate();
 
         choose = controllerFunctionsBank.startDisplayMenu();
         do {

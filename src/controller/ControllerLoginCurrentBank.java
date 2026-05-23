@@ -1,66 +1,26 @@
 package controller;
 
 import model.ModelCurrentBank;
+import service.ServiceCurrentBank;
 import view.ViewLoginBank;
-import view.ViewFunctionBank;
 
 public class ControllerLoginCurrentBank {
 
-    ViewFunctionBank viewFunctionBank = new ViewFunctionBank();
     ViewLoginBank viewLoginBank = new ViewLoginBank();
-
-    private int passwordAttempts = 0;
-    private int cpfAttempts = 0;
+    ServiceCurrentBank serviceCurrentBank = new ServiceCurrentBank();
 
     public void startDisplayMenuLoginCurrentCPF() {
         ModelCurrentBank currentCount = null;
 
+        // O Controller gerencia o loop, pois ele pode pedir novos CPFs à View a cada rodada
         do {
             long idCPF = viewLoginBank.displayLoginCountCurrentCPF();
-            currentCount = checkLoginCurrentCPF(idCPF);
+            currentCount = serviceCurrentBank.startServiceLoginCurrentCPF(idCPF);
 
-            if (cpfAttempts >= 3) {
-                viewFunctionBank.errorLoginExced();
-                System.exit(0);
-            }
-        } while (currentCount == null);
+        } while (currentCount == null); // Repete o menu se o service retornar nulo
 
+        // Fluxo de Sucesso
         viewLoginBank.countDataTest(currentCount);
     }
 
-    public ModelCurrentBank checkLoginCurrentCPF(long cpf) {
-        ModelCurrentBank currentCount = getCurrentCountCPF(cpf);
-
-        if (currentCount == null) {
-            viewFunctionBank.errorLogin();
-            cpfAttempts++;
-            return null;
-        }
-
-        cpfAttempts = 0;
-
-        do {
-            int password = viewLoginBank.displayLoginCountCurrentPassword();
-
-            if (currentCount.getPassword() == password) {
-                return currentCount;
-            }
-                viewFunctionBank.errorLogin();
-                passwordAttempts++;
-
-        } while (passwordAttempts < 3);
-
-        viewFunctionBank.errorLoginExced();
-        System.exit(0);
-        return null;
-    }
-
-    public static ModelCurrentBank getCurrentCountCPF(long cpf) {
-        for (ModelCurrentBank currentBank : ControllerCreateCurrentBank.currentCount) {
-            if (currentBank.getNumberCPF() == cpf) {
-                return currentBank;
-            }
-        }
-        return null;
-    }
 }
