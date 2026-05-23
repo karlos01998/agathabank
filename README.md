@@ -1,6 +1,6 @@
 # 🏦 AgathaBank
 
-O **AgathaBank** é um simulador de ecossistema bancário baseado em console, desenvolvido em Java puro. O objetivo principal deste projeto é aplicar de forma prática os pilares da Programação Orientada a Objetos (POO), padrões de arquitetura de software e boas práticas de desenvolvimento de backend em uma aplicação monolítica.
+O **AgathaBank** é um simulador de ecossistema bancário baseado em console, desenvolvido em Java puro. O objetivo principal deste projeto é aplicar de forma prática os pilares da Programação Orientada a Objetos (POO), padrões de arquitetura de software e boas práticas de desenvolvimento de backend em uma aplicação monolítica estável e segura.
 
 ---
 
@@ -13,10 +13,11 @@ O projeto consiste em um sistema de terminal que simula as operações essenciai
 * **Autenticação Segura:** Sistema de Login estruturado que valida de forma casada o CPF e a senha do usuário antes de liberar o menu de operações.
 * **Menu de Operações Avançadas:** Após o login, o usuário ganha acesso a recursos de movimentação financeira (Saques, Depósitos e Consultas de Saldo).
 
-### 🛠️ Regras de Negócio Implementadas
-* **Validação de Saldo Segura:** O saldo das contas (especialmente a Poupança) é blindado contra valores negativos através de validações rigorosas nos métodos modificadores (`setBalance`).
-* **Taxa de Rendimento Fixa:** As contas poupança possuem uma taxa de rendimento nativa e imutável de `0.5%` (`TAXA_RENDIMENTO`), definida de forma eficiente em nível de classe.
-* **Segurança de Tipos Numéricos:** Tratamento de dados sensíveis, como o CPF, utilizando tipos primitivos adequados (`long`) com sufixos explícitos para evitar estouro de memória na JVM e bugs de leitura octal.
+### 🛠️ Regras de Negócio e Segurança Implementadas
+* **Mecanismo Antifraude (Bloqueio de Acesso):** Implementação de contadores de tentativas isolados para CPF e Senha no escopo da classe controladora. O sistema barra o usuário e encerra a aplicação (`System.exit(0)`) após 3 falhas consecutivas, mitigando ataques de força bruta.
+* **Validação de Saldo Segura:** O saldo das contas é blindado contra valores negativos através de validações com interrupção explícita (`return;`) nos métodos modificadores (`setBalance`).
+* **Taxa de Rendimento Eficiente:** As contas poupança possuem uma taxa de rendimento nativa e imutável de `0.5%` (`TAXA_RENDIMENTO`), definida estaticamente em nível de classe para otimização de memória Heap.
+* **Segurança de Tipos Numéricos:** Tratamento de dados sensíveis (como CPF) utilizando primitivos `long` com sufixos explícitos, evitando estouro de capacidade e bugs de leitura de base octal.
 
 ---
 
@@ -26,7 +27,7 @@ O projeto adota o padrão arquitetural **MVC (Model-View-Controller)** para gara
 
 * **Model (Camada de Dados):** Contém as entidades de negócio (`ModelBank`, `ModelCurrentBank`, `ModelSavingsBank`). É responsável pela estrutura dos dados, validações internas e encapsulamento dos atributos.
 * **View (Camada de Interface):** Classes focadas estritamente na interação com o usuário via console (captura de dados pelo teclado com `Scanner` e exibição de menus). Não possui regras de lógica ou processamento.
-* **Controller (Camada de Controle):** O cérebro do aplicativo. Gerencia o fluxo de navegação entre as telas utilizando estruturas limpas de `switch-case` em métodos isolados, evitando aninhamentos complexos e código espaguete.
+* **Controller (Camada de Controle):** O cérebro do aplicativo. Gerencia o fluxo de navegação entre as telas utilizando estruturas limpas de `switch-case` e loops `do-while` iterativos, evitando o uso de recursão indireta e protegendo a pilha de execução da JVM contra falhas de `StackOverflowError`.
 
 ---
 
