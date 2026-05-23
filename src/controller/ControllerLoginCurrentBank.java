@@ -8,45 +8,50 @@ public class ControllerLoginCurrentBank {
 
     ViewFunctionBank viewFunctionBank = new ViewFunctionBank();
     ViewLoginBank viewLoginBank = new ViewLoginBank();
-    ControllerFunctionsBank controllerFunctionsBank = new ControllerFunctionsBank();
 
-    int attempts = 0;
+    private int passwordAttempts = 0;
+    private int cpfAttempts = 0;
 
     public void startDisplayMenuLoginCurrentCPF() {
+        ModelCurrentBank currentCount = null;
 
-        long idCPF = viewLoginBank.displayLoginCountCurrentCPF();
-        ModelCurrentBank countUser = checkLoginCurrentCPF(idCPF);
+        do {
+            long idCPF = viewLoginBank.displayLoginCountCurrentCPF();
+            currentCount = checkLoginCurrentCPF(idCPF);
 
-        if (countUser != null) {
-            viewLoginBank.countDataTest(countUser);
-            viewFunctionBank.DisplayPause();
-        }
-        System.exit(0);
+            if (cpfAttempts >= 3) {
+                viewFunctionBank.errorLoginExced();
+                System.exit(0);
+            }
+        } while (currentCount == null);
+
+        viewLoginBank.countDataTest(currentCount);
     }
 
     public ModelCurrentBank checkLoginCurrentCPF(long cpf) {
-
         ModelCurrentBank currentCount = getCurrentCountCPF(cpf);
 
-            if (currentCount == null) {
-                viewFunctionBank.errorLogin();
-                attempts++;
+        if (currentCount == null) {
+            viewFunctionBank.errorLogin();
+            cpfAttempts++;
+            return null;
+        }
 
-            }
+        cpfAttempts = 0;
 
         do {
-
             int password = viewLoginBank.displayLoginCountCurrentPassword();
 
-            if (currentCount.getPassword() != password) {
-                viewFunctionBank.errorLogin();
-                attempts++;
-            } else if (currentCount.getPassword() == password) {
+            if (currentCount.getPassword() == password) {
                 return currentCount;
             }
+                viewFunctionBank.errorLogin();
+                passwordAttempts++;
 
-        } while (attempts < 3);
-        viewFunctionBank.errorLogin();
+        } while (passwordAttempts < 3);
+
+        viewFunctionBank.errorLoginExced();
+        System.exit(0);
         return null;
     }
 

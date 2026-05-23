@@ -27,6 +27,7 @@ public class ControllerStartBank {
 
                 case 3:
                     controllerFunctionsBank.exitApp();
+                    System.exit(0);
                     break;
 
                 default:
@@ -51,6 +52,7 @@ public class ControllerStartBank {
 
                 case 3:
                     controllerFunctionsBank.exitApp();
+                    System.exit(0);
                     break;
 
                 default:
@@ -75,6 +77,7 @@ public class ControllerStartBank {
 
                 case 3:
                     controllerFunctionsBank.exitApp();
+                    System.exit(0);
                     break;
 
                 default:

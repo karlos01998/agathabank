@@ -1,61 +1,66 @@
 package controller;
 
-import model.ModelCurrentBank;
 import model.ModelSavingsBank;
 import view.ViewFunctionBank;
 import view.ViewLoginBank;
 
-import java.util.Scanner;
-
 public class ControllerLoginSavingsBank {
 
-    Scanner write = new Scanner(System.in);
-    ViewLoginBank viewLoginBank = new ViewLoginBank();
     ViewFunctionBank viewFunctionBank = new ViewFunctionBank();
+    ViewLoginBank viewLoginBank = new ViewLoginBank();
+
+    private int passwordAttempts = 0;
+    private int cpfAttempts = 0;
 
     public void startDisplayMenuLoginSavingsCPF() {
-        long idCPF = viewLoginBank.displayLoginCountCurrentCPF();
-        checkLoginCurrentCPF(idCPF);
+        ModelSavingsBank savingsCount = null;
+
+        do {
+            long idCPF = viewLoginBank.displayLoginCountSavingsCPF();
+            savingsCount = checkLoginSavingsCPF(idCPF);
+
+            if (cpfAttempts >= 3) {
+                viewFunctionBank.errorLoginExced();
+                System.exit(0);
+            }
+        } while (savingsCount == null);
+
+        viewLoginBank.countDataTest(savingsCount);
     }
 
-    public void checkLoginCurrentCPF(long cpf) {
-        boolean check = getSavingsCountCPF(cpf);
+    public  ModelSavingsBank checkLoginSavingsCPF(long cpf) {
+        ModelSavingsBank savingsCount = getSavingsCountCPF(cpf);
 
-        if (check == false) {
+        if (savingsCount == null) {
             viewFunctionBank.errorLogin();
-        } else if (check == true) {
-            checkLoginSavingsPassword();
+            cpfAttempts++;
+            return null;
         }
-    }
 
-    public void checkLoginSavingsPassword() {
-        int password = viewLoginBank.displayLoginCountSavingsPassword();
-        boolean check;
+        cpfAttempts = 0;
 
-        check = getSavingsCountPassword(password);
+        do {
+            int password = viewLoginBank.displayLoginCountSavingsPassword();
 
-        if (check == false) {
+            if (savingsCount.getPassword() == password) {
+                return savingsCount;
+            }
             viewFunctionBank.errorLogin();
-        } else if (check == true) {
-            viewFunctionBank.displaycount();
-        }
+            passwordAttempts++;
+
+        } while (passwordAttempts < 3);
+
+        viewFunctionBank.errorLoginExced();
+        System.exit(0);
+        return null;
     }
 
-   public static boolean getSavingsCountCPF(long cpf) {
-       for (ModelSavingsBank savingsBank : ControllerCreateSavingsBank.SavingsCount) {
-           if (savingsBank.getNumberCPF() == cpf) {
-               return true;
-           }
-       }
-       return false;
-   }
-
-    public static boolean getSavingsCountPassword(int password) {
-        for (ModelSavingsBank savingsBank : ControllerCreateSavingsBank.SavingsCount) {
-            if (savingsBank.getPassword() == password) {
-                return true;
+    public static  ModelSavingsBank getSavingsCountCPF(long cpf) {
+        for ( ModelSavingsBank savingsCount : ControllerCreateSavingsBank.SavingsCount) {
+            if (savingsCount.getNumberCPF() == cpf) {
+                return savingsCount;
             }
         }
-        return false;
+        return null;
     }
 }
