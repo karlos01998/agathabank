@@ -1,45 +1,34 @@
-# 🏦 AgathaBank
+# 📈 Evolução Planejada e Linha do Tempo Técnica
 
-O **AgathaBank** é um simulador de ecossistema bancário baseado em console, desenvolvido em Java puro. O objetivo principal deste projeto é aplicar de forma prática os pilares da Programação Orientada a Objetos (POO), padrões de arquitetura de software e boas práticas de desenvolvimento de backend em uma aplicação monolítica estável e segura.
+O AgathaBank é um laboratório vivo. A lista abaixo reflete os marcos tecnológicos já consolidados no código e os próximos passos da minha jornada de aprendizado em Engenharia de Software.
 
----
-
-## 🎯 Escopo do Projeto
-
-O projeto consiste em um sistema de terminal que simula as operações essenciais de um banco real, dividindo as contas em duas categorias com regras de negócio específicas: **Conta Corrente** e **Conta Poupança**.
-
-### 💼 Funcionalidades Principais
-* **Abertura de Contas:** Cadastro de novos clientes coletando dados obrigatórios (CPF, Nome e Data de Nascimento).
-* **Autenticação Segura:** Sistema de Login estruturado que valida de forma casada o CPF e a senha do usuário antes de liberar o menu de operações.
-* **Menu de Operações Avançadas:** Após o login, o usuário ganha acesso a recursos de movimentação financeira (Saques, Depósitos e Consultas de Saldo).
-
-### 🛠️ Regras de Negócio e Segurança Implementadas
-* **Mecanismo Antifraude (Bloqueio de Acesso):** Implementação de contadores de tentativas isolados para CPF e Senha no escopo da classe controladora. O sistema barra o usuário e encerra a aplicação (`System.exit(0)`) após 3 falhas consecutivas, mitigando ataques de força bruta.
-* **Validação de Saldo Segura:** O saldo das contas é blindado contra valores negativos através de validações com interrupção explícita (`return;`) nos métodos modificadores (`setBalance`).
-* **Taxa de Rendimento Eficiente:** As contas poupança possuem uma taxa de rendimento nativa e imutável de `0.5%` (`TAXA_RENDIMENTO`), definida estaticamente em nível de classe para otimização de memória Heap.
-* **Segurança de Tipos Numéricos:** Tratamento de dados sensíveis (como CPF) utilizando primitivos `long` com sufixos explícitos, evitando estouro de capacidade e bugs de leitura de base octal.
-
----
-
-## 📐 Arquitetura do Sistema
-
-O projeto adota o padrão arquitetural **MVC (Model-View-Controller)** para garantir o desacoplamento completo de responsabilidades:
-
-* **Model (Camada de Dados):** Contém as entidades de negócio (`ModelBank`, `ModelCurrentBank`, `ModelSavingsBank`). É responsável pela estrutura dos dados, validações internas e encapsulamento dos atributos.
-* **View (Camada de Interface):** Classes focadas estritamente na interação com o usuário via console (captura de dados pelo teclado com `Scanner` e exibição de menus). Não possui regras de lógica ou processamento.
-* **Controller (Camada de Controle):** O cérebro do aplicativo. Gerencia o fluxo de navegação entre as telas utilizando estruturas limpas de `switch-case` e loops `do-while` iterativos, evitando o uso de recursão indireta e protegendo a pilha de execução da JVM contra falhas de `StackOverflowError`.
+### 🟢 Etapas Concluídas (Consolidadas no Projeto)
+- [x] **Lógica de Programação Avançada**
+  * Controle de fluxo limpo utilizando estruturas iterativas (`do-while` e `switch-case`).
+  * Eliminação de anti-padrões de fluxo, como recursão indireta (evitando *StackOverflowError*).
+- [x] **Programação Orientada a Objetos (POO) Aplicada**
+  * Uso estrito de Encapsulamento (`private`, `protected`) e métodos acessores (Getters/Setters) com validações.
+  * Abstração e Reutilização de código através de Herança legítima baseada em uma classe mãe (`ModelBank`).
+  * Polimorfismo de construtores acoplados via `super()` e sobrescritas de métodos (`@Override`).
+- [x] **Arquitetura Baseada em Camadas (Three-Tier Architecture)**
+  * Desacoplamento do projeto seguindo o padrão de mercado: **Controller ➡️ Service ➡️ Repository**.
+  * **Controller:** Responsável estritamente pelo ciclo de vida das telas, menus e capturas de dados.
+  * **Service:** Concentração exclusiva das regras de negócio e validações lógicas.
+  * **Repository:** Isolamento total da manipulação de dados e coleções em memória (`ArrayList`).
+- [x] **Padrão de Arquitetura MVC (Model-View-Controller)**
+  * Separação completa entre a lógica do sistema e a interface de console do usuário (Camada `View`).
+- [x] **Data Transfer Objects (DTO)**
+  * Transporte seguro e imutável de pacotes de dados entre camadas utilizando Java `records` (`DTOCurrent` e `DTOSavings`).
+- [x] **Mecanismos de Segurança e Proteção de Memória**
+  * Criação de algoritmo antifraude com contadores de tentativas isolados para CPF e Senha, bloqueando acessos suspeitos por força bruta.
+  * Otimização de uso da memória Heap da JVM através de constantes de classe (`public static final`).
+  * Blindagem contra estouros de capacidade numérica usando tipos primitivos adequados (`long`).
+- [x] **Versionamento de Código Profissional**
+  * Gestão de histórico, resolução de conflitos upstream (*Merge/Pull*) e sincronização via Git/GitHub integrados à IDE.
 
 ---
 
-## 🚀 Tecnologias e Conceitos de POO Utilizados
-
-* **Linguagem:** Java 17 / 21
-* **Abstração & Encapsulamento:** Uso estrito de modificadores de acesso (`private`, `protected`, `public`) e métodos getters/setters estruturados para proteção de dados.
-* **Herança & Polimorfismo:** Reutilização de código através de uma classe mãe (`ModelBank`) repassando comportamentos e atributos comuns para as classes filhas via construtores acoplados com `super()`.
-* **Data Transfer Objects (DTO):** Utilização de Java `records` (`DTOCurrent` e `DTOSavings`) para o transporte limpo, imutável e seguro de pacotes de dados entre a View e o Controller.
-
----
-
-## 🚧 Status do Projeto
-
-O projeto encontra-se em **fase ativa de construção** e evolução. Novas funcionalidades de persistência de dados e refinamentos nas regras de transações financeiras estão sendo adicionadas progressivamente.
+### 🟡 Próximos Passos (A Evolução do Laboratório)
+- [ ] Persistência com Banco de Dados Relacional
+- [ ] Conectividade com Java Database Connectivity (JDBC)
+- [ ] Migração para o ecossistema Spring Boot
