@@ -15,7 +15,7 @@ public class ControllerLoginCurrentBank {
         // O Controller gerencia o loop, pois ele pode pedir novos CPFs à View a cada rodada
         do {
             long idCPF = viewLoginBank.displayLoginCountCurrentCPF();
-            currentCount = serviceCurrentBank.startServiceLoginCurrentCPF(idCPF);
+            currentCount = serviceCurrentBank.serviceLoginCurrent(idCPF);
 
         } while (currentCount == null); // Repete o menu se o service retornar nulo
 

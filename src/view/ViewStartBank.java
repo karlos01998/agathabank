@@ -19,7 +19,7 @@ public class ViewStartBank {
                 
                 
                 """);
-        viewFunctionBank.DisplayPause();
+        viewFunctionBank.displayPause();
     }
 
     public int displayStartMenuApp() {

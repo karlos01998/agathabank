@@ -20,7 +20,7 @@ public class ViewFunctionBank {
 
     }
 
-    public void DisplayPause() {
+    public void displayPause() {
         System.out.println("   Enter para PROSSEGUIR...");
         write.nextLine();
     }
@@ -38,7 +38,7 @@ public class ViewFunctionBank {
                 
                           SAINDO...
                 """);
-        DisplayPause();
+        displayPause();
     }
 
     public void displayChooseError() {
@@ -54,7 +54,7 @@ public class ViewFunctionBank {
                      Escolha Incorreta
                 
                 """);
-        DisplayPause();
+        displayPause();
     }
 
     public void errorLogin(){
@@ -70,7 +70,7 @@ public class ViewFunctionBank {
                 
                 
                 """);
-        DisplayPause();
+        displayPause();
     }
 
     public void displaycount() {
@@ -86,7 +86,7 @@ public class ViewFunctionBank {
                 
                        Conta Valida!
                 """);
-        DisplayPause();
+        displayPause();
     }
 
     public void errorLoginExced() {
@@ -102,6 +102,6 @@ public class ViewFunctionBank {
                 
                       Acesso Bloqueado!
                 """);
-        DisplayPause();
+        displayPause();
     }
 }

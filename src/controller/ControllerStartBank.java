@@ -5,8 +5,13 @@ import repository.RepositorySavingsBank;
 
 public class ControllerStartBank {
     ControllerFunctionsBank controllerFunctionsBank = new ControllerFunctionsBank();
+
+    ControllerCreateCurrentBank controllerCreateCurrentBank = new ControllerCreateCurrentBank();
+    ControllerCreateSavingsBank controllerCreateSavingsBank = new ControllerCreateSavingsBank();
+
     ControllerLoginCurrentBank controllerLoginCurrentBank = new ControllerLoginCurrentBank();
     ControllerLoginSavingsBank controllerLoginSavingsBank = new ControllerLoginSavingsBank();
+
     RepositorySavingsBank repositorySavingsBank = new RepositorySavingsBank();
     RepositoryCurrentBank repositoryCurrentBank = new RepositoryCurrentBank();
 
@@ -15,7 +20,7 @@ public class ControllerStartBank {
         int choose = 0;
 
         controllerFunctionsBank.startApp();
-        repositoryCurrentBank.modelCurrentBankCreate();
+        repositoryCurrentBank.modelCurrentBankCreateInity();
         repositorySavingsBank.modelSavingsBankCreate();
 
         choose = controllerFunctionsBank.startDisplayMenu();
@@ -72,7 +77,7 @@ public class ControllerStartBank {
         do {
             switch (choose) {
                 case 1:
-                    controllerLoginCurrentBank.startDisplayMenuLoginCurrentCPF();
+                    controllerCreateCurrentBank.createCurrentBank();
                     break;
 
                 case 2:

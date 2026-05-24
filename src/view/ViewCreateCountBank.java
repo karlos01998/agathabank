@@ -1,5 +1,8 @@
 package view;
 
+import dto.DTOCreateCurrentBank;
+import dto.DTOCreateSavingsBank;
+
 import java.util.Scanner;
 
 public class ViewCreateCountBank {
@@ -25,7 +28,7 @@ public class ViewCreateCountBank {
 
     //Telas para Conta Current//
 
-    public long displayCreateCountCurrentCPF() {
+    public DTOCreateCurrentBank displayCreateCountCurrent() {
         viewFunctionBank.clearDisplay();
         System.out.println("""
                 
@@ -39,10 +42,8 @@ public class ViewCreateCountBank {
                 
                 
                 """);
-        return write.nextLong();
-    }
+        long cpf = write.nextLong();
 
-    public int displayCreateCountCurrentPassword() {
         viewFunctionBank.clearDisplay();
         System.out.println("""
                 
@@ -57,17 +58,82 @@ public class ViewCreateCountBank {
                 
                 
                 """);
-        return write.nextInt();
-    }
+        int password = write.nextInt();
 
-    //Telas para Conta SAVINGS//
-
-    public long displayCreateCountSavingsCPF() {
         viewFunctionBank.clearDisplay();
         System.out.println("""
                 
                       |- AgathaBank -|
-                       Conta Poupanca
+                       Conta Corrente
+                
+                
+                           Nome:
+                        
+                
+                
+                
+                
+                """);
+        String name = write.nextLine();
+
+        viewFunctionBank.clearDisplay();
+        System.out.println("""
+                
+                      |- AgathaBank -|
+                       Conta Corrente
+                
+                
+                     Ano de Nascimento:
+                        
+                
+                
+                
+                
+                """);
+        int year = write.nextInt();
+
+        viewFunctionBank.clearDisplay();
+        System.out.println("""
+                
+                      |- AgathaBank -|
+                       Conta Corrente
+                
+                
+                     Mês de Nascimento:
+                        
+                
+                
+                
+                
+                """);
+        int month = write.nextInt();
+
+
+        viewFunctionBank.clearDisplay();
+        System.out.println("""
+                
+                      |- AgathaBank -|
+                       Conta Corrente
+                
+                
+                     Dia de Nascimento:
+                        
+                
+                
+                
+                
+                """);
+        int day = write.nextInt();
+
+        return new DTOCreateCurrentBank(cpf, name, year, month, day, password);
+    }
+
+    public DTOCreateSavingsBank displayCreateCountSavings() {
+        viewFunctionBank.clearDisplay();
+        System.out.println("""
+                
+                      |- AgathaBank -|
+                       Conta Corrente
                 
                 
                         Digite o CPF:
@@ -76,15 +142,13 @@ public class ViewCreateCountBank {
                 
                 
                 """);
-        return write.nextLong();
-    }
+        long cpf = write.nextLong();
 
-    public int displayCreateCountSavingsPassword() {
         viewFunctionBank.clearDisplay();
         System.out.println("""
                 
                       |- AgathaBank -|
-                       Conta Poupanca
+                       Conta Corrente
                 
                 
                       Digite a SENHA:
@@ -94,6 +158,129 @@ public class ViewCreateCountBank {
                 
                 
                 """);
-        return write.nextInt();
+        int password = write.nextInt();
+
+        viewFunctionBank.clearDisplay();
+        System.out.println("""
+                
+                      |- AgathaBank -|
+                       Conta Corrente
+                
+                
+                           Nome:
+                        
+                
+                
+                
+                
+                """);
+        String name = write.nextLine();
+
+        viewFunctionBank.clearDisplay();
+        System.out.println("""
+                
+                      |- AgathaBank -|
+                       Conta Corrente
+                
+                
+                     Ano de Nascimento:
+                        
+                
+                
+                
+                
+                """);
+        int year = write.nextInt();
+
+        viewFunctionBank.clearDisplay();
+        System.out.println("""
+                
+                      |- AgathaBank -|
+                       Conta Corrente
+                
+                
+                     Mês de Nascimento:
+                        
+                
+                
+                
+                
+                """);
+        int month = write.nextInt();
+
+
+        viewFunctionBank.clearDisplay();
+        System.out.println("""
+                
+                      |- AgathaBank -|
+                       Conta Corrente
+                
+                
+                     Dia de Nascimento:
+                        
+                
+                
+                
+                
+                """);
+        int day = write.nextInt();
+
+        return new DTOCreateSavingsBank(cpf, name, year, month, day, password);
     }
+
+    public void errorCPF() {
+        viewFunctionBank.clearDisplay();
+        System.out.println("""
+                
+                      |- AgathaBank -|
+                       Conta Corrente
+                
+                
+                    Erro no comprimento
+                           do CPF
+                        
+                
+                
+                
+                """);
+        viewFunctionBank.displayPause();
+    }
+
+    public void errorPassword() {
+        viewFunctionBank.clearDisplay();
+        System.out.println("""
+                
+                      |- AgathaBank -|
+                       Conta Corrente
+                
+                
+                    Erro no comprimento
+                         da Senha
+                        
+                
+                
+                
+                """);
+        viewFunctionBank.displayPause();
+    }
+
+    public void errorAge() {
+        viewFunctionBank.clearDisplay();
+        System.out.println("""
+                
+                      |- AgathaBank -|
+                       Conta Corrente
+                
+                
+                           Erro! 
+                       Menor de IDADE
+                        
+                
+                
+                
+                """);
+        viewFunctionBank.displayPause();
+    }
+
+
 }
