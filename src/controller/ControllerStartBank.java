@@ -21,7 +21,7 @@ public class ControllerStartBank {
 
         controllerFunctionsBank.startApp();
         repositoryCurrentBank.modelCurrentBankCreateInity();
-        repositorySavingsBank.modelSavingsBankCreate();
+        repositorySavingsBank.modelSavingsBankCreateInity();
 
         choose = controllerFunctionsBank.startDisplayMenu();
         do {

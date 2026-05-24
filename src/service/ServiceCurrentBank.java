@@ -98,7 +98,7 @@ public class ServiceCurrentBank {
 
         int ageNow = Period.between(age, date).getYears();
 
-        if (ageNow > 18 && ageNow < 100) {
+        if (ageNow < 18 && ageNow > 100) {
             viewCreateCountBank.errorAge();
             System.exit(0);
         }
