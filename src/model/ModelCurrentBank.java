@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-
 public class ModelCurrentBank extends ModelBank {
 
     boolean debt;

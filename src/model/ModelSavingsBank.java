@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-
 public class ModelSavingsBank extends ModelBank {
     private static final float YELD_RATE = 0.5f;
 

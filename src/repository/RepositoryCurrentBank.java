@@ -1,6 +1,5 @@
 package repository;
 
-import dto.DTOCreateCurrentBank;
 import model.ModelCurrentBank;
 import view.ViewFunctionBank;
 
@@ -15,16 +14,7 @@ public class RepositoryCurrentBank {
         currentCount.add(new ModelCurrentBank(12345678910L, "Agatha Leal", 2017, 7,30,80,2000));
     }
 
-    public void modelCurrentBankCreate(DTOCreateCurrentBank dtoCreateCurrentBank) {
-        ModelCurrentBank newCountCreate = new ModelCurrentBank(dtoCreateCurrentBank.cpf(),
-        dtoCreateCurrentBank.name(),
-        dtoCreateCurrentBank.year(),
-        dtoCreateCurrentBank.month(),
-        dtoCreateCurrentBank.day(),
-        dtoCreateCurrentBank.password()
-        );
-        currentCount.add(newCountCreate);
-        viewFunctionBank.displaycount();
+    public void repositoryCurrentBankCreate(ModelCurrentBank modelCurrentBank) {
+        currentCount.add(modelCurrentBank);
     }
-
 }

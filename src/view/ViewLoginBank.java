@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import model.ModelCurrentBank;
 import model.ModelSavingsBank;
-import view.ViewFunctionBank;
 
 public class ViewLoginBank {
 

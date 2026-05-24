@@ -1,8 +1,5 @@
 package repository;
 
-import dto.DTOCreateCurrentBank;
-import dto.DTOCreateSavingsBank;
-import model.ModelCurrentBank;
 import model.ModelSavingsBank;
 import view.ViewFunctionBank;
 
@@ -17,16 +14,8 @@ public class RepositorySavingsBank {
         savingsCount.add(new ModelSavingsBank(12345678910L, "Agatha Leal", 2017, 7,30,80,2000));
     }
 
-    public void modelSavingsBankCreate(DTOCreateSavingsBank dtoCreateSavingsBank) {
-        ModelSavingsBank newCountCreate = new ModelSavingsBank(dtoCreateSavingsBank.cpf(),
-                dtoCreateSavingsBank.name(),
-                dtoCreateSavingsBank.year(),
-                dtoCreateSavingsBank.month(),
-                dtoCreateSavingsBank.day(),
-                dtoCreateSavingsBank.password()
-        );
-        savingsCount.add(newCountCreate);
-        viewFunctionBank.displaycount();
+    public void repositorySavingsBankCreate(ModelSavingsBank modelSavingsBank) {
+        savingsCount.add(modelSavingsBank);
     }
 
 }

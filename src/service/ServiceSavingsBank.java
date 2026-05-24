@@ -1,10 +1,7 @@
 package service;
 
-import dto.DTOCreateCurrentBank;
 import dto.DTOCreateSavingsBank;
-import model.ModelCurrentBank;
 import model.ModelSavingsBank;
-import repository.RepositoryCurrentBank;
 import repository.RepositorySavingsBank;
 import view.ViewCreateCountBank;
 import view.ViewFunctionBank;
@@ -101,11 +98,22 @@ public class ServiceSavingsBank {
 
         int ageNow = Period.between(age, date).getYears();
 
-        if (ageNow > 18 && ageNow < 100) {
+        if (ageNow < 18 && ageNow > 100) {
             viewCreateCountBank.errorAge();
             System.exit(0);
         }
-        repositorySavingsBank.modelSavingsBankCreate(dtoCreateSavingsBank);
+        serviceSavingsBankCreate(dtoCreateSavingsBank);
+    }
+
+    public void serviceSavingsBankCreate(DTOCreateSavingsBank dtoCreateSavingsBank) {
+        ModelSavingsBank newCountCreate = new ModelSavingsBank(dtoCreateSavingsBank.cpf(),
+                dtoCreateSavingsBank.name(),
+                dtoCreateSavingsBank.year(),
+                dtoCreateSavingsBank.month(),
+                dtoCreateSavingsBank.day(),
+                dtoCreateSavingsBank.password()
+        );
+        repositorySavingsBank.repositorySavingsBankCreate(newCountCreate);
         viewFunctionBank.displaycount();
     }
 }

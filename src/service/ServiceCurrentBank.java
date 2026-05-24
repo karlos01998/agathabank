@@ -102,7 +102,18 @@ public class ServiceCurrentBank {
             viewCreateCountBank.errorAge();
             System.exit(0);
         }
-        repositoryCurrentBank.modelCurrentBankCreate(dtoCreateCurrentBank);
+        serviceCurrentBankCreate(dtoCreateCurrentBank);
+    }
+
+    public void serviceCurrentBankCreate(DTOCreateCurrentBank dtoCreateCurrentBank) {
+        ModelCurrentBank newCountCreate = new ModelCurrentBank(dtoCreateCurrentBank.cpf(),
+                dtoCreateCurrentBank.name(),
+                dtoCreateCurrentBank.year(),
+                dtoCreateCurrentBank.month(),
+                dtoCreateCurrentBank.day(),
+                dtoCreateCurrentBank.password()
+        );
+        repositoryCurrentBank.repositoryCurrentBankCreate(newCountCreate);
         viewFunctionBank.displaycount();
     }
 }
