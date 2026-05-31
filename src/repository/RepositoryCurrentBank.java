@@ -1,20 +1,22 @@
 package repository;
 
 import model.ModelCurrentBank;
-import view.ViewFunctionBank;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RepositoryCurrentBank {
-    ViewFunctionBank viewFunctionBank = new ViewFunctionBank();
-    public static ArrayList<ModelCurrentBank> currentCount = new ArrayList<>();
+    public static Map<Long, ModelCurrentBank> currentCount = new HashMap<>();
 
-    public static void modelCurrentBankCreateInity() {
-        currentCount.add(new ModelCurrentBank(12345678901L, "Maria Eunice", 2000, 5, 6, 654321, 1000000));
-        currentCount.add(new ModelCurrentBank(12345678910L, "Agatha Leal", 2017, 7,30,80,2000));
+    public static void repositoryCurrentBankCreateInity() {
+        ModelCurrentBank countOne = new ModelCurrentBank(12345678901L, "Maria Eunice", 2000, 5, 6, 654321, 1000000);
+        ModelCurrentBank countTwo = new ModelCurrentBank(12345678910L, "Agatha Leal", 2017, 7,30,80,2000);
+
+        currentCount.put(countOne.getNumberCPF(), countOne);
+        currentCount.put(countTwo.getNumberCPF(), countTwo);
     }
 
     public void repositoryCurrentBankCreate(ModelCurrentBank modelCurrentBank) {
-        currentCount.add(modelCurrentBank);
+        currentCount.put(modelCurrentBank.getNumberCPF(), modelCurrentBank);
     }
 }

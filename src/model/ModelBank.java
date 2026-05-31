@@ -11,17 +11,13 @@ abstract class ModelBank {
     private int password;
     private double balance;
 
-    protected ModelBank(long cpf, String name, int year, int month, int day) {
+    protected ModelBank(long cpf, String name, int year, int month, int day, int password) {
         this.nameUser = name;
         this.numberCPF = cpf;
         this.yearBirth = year;
         this.monthBirth = month;
         this.dayBirth = day;
-    }
-
-    protected ModelBank(long cpf, String name, int year, int month, int day, int password) {
-        this(cpf, name, year, month, day);
-        this.password = password;
+        this.password = this.password;
     }
 
     protected ModelBank(long cpf, String name, int year, int month, int day, int password, double balance) {

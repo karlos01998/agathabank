@@ -9,12 +9,8 @@ public class ModelCurrentBank extends ModelBank {
     boolean loan;
     double loanBalance;
 
-    public ModelCurrentBank(long cpf, String name, int year, int month, int day) {
-        super(cpf, name, year, month, day);
-    }
-
     public ModelCurrentBank(long cpf, String name, int year, int month, int day, int password) {
-        super(cpf, name, year, month, day, password);
+        super(cpf, name, year, month, password, password);
     }
 
     public ModelCurrentBank(long cpf, String name, int year, int month, int day, int password, double balance) {

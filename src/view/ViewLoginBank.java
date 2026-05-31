@@ -18,13 +18,15 @@ public class ViewLoginBank {
                 
                 
                 
-                  Qual a conta para Login:
+                    Qual o tipo de Conta:
                 
                       Conta Corrente [1]
                       Conta Poupança [2]
                           SAIR [3]
                 """);
-        return write.nextInt();
+        int choose = write.nextInt();
+        write.nextLine();
+        return choose;
     }
 
     // Telas de Login Conta Current
@@ -43,7 +45,9 @@ public class ViewLoginBank {
                 
                 
                 """);
-        return write.nextLong();
+        long idCPF = write.nextLong();
+        write.nextLine();
+        return idCPF;
     }
 
     public int displayLoginCountCurrentPassword() {
@@ -60,7 +64,9 @@ public class ViewLoginBank {
                 
                 
                 """);
-        return write.nextInt();
+        int password = write.nextInt();
+        write.nextLine();
+        return password;
     }
 
     //Telas de login Conta Savings
@@ -79,7 +85,9 @@ public class ViewLoginBank {
                 
                 
                 """);
-        return write.nextLong();
+        long idCPF = write.nextLong();
+        write.nextLine();
+        return idCPF;
     }
 
     public int displayLoginCountSavingsPassword() {
@@ -96,7 +104,9 @@ public class ViewLoginBank {
                 
                 
                 """);
-        return write.nextInt();
+        int password = write.nextInt();
+        write.nextLine();
+        return password;
     }
 
     public void countDataTest(ModelCurrentBank conta) {

@@ -1,5 +1,6 @@
 package service;
 
+import controller.ControllerLoginSavingsBank;
 import dto.DTOCreateSavingsBank;
 import model.ModelSavingsBank;
 import repository.RepositorySavingsBank;
@@ -9,6 +10,8 @@ import view.ViewLoginBank;
 
 import java.time.LocalDate;
 import java.time.Period;
+
+import static repository.RepositorySavingsBank.savingsCount;
 
 public class ServiceSavingsBank {
     private final ViewFunctionBank viewFunctionBank = new ViewFunctionBank();
@@ -20,7 +23,14 @@ public class ServiceSavingsBank {
     private int cpfAttempts = 0;
 
     public ModelSavingsBank serviceLoginSavings(long idCPF) {
-        ModelSavingsBank savingsCount = serviceGetSavingsCountCPF(idCPF);
+        boolean check = serviceCheckCPFSizeSavingsBank(idCPF);
+
+        if (check == false) {
+            viewFunctionBank.errorCPFSize();
+            System.exit(0);
+        }
+
+        ModelSavingsBank savingsCount = serviceCheckSavingsCountCPFReturn(idCPF);
 
         if (savingsCount == null) {
             viewFunctionBank.errorLogin();
@@ -38,7 +48,7 @@ public class ServiceSavingsBank {
         do {
             int password = viewLoginBank.displayLoginCountSavingsPassword();
 
-            if (savingsCount.getPassword() == password) {
+            if (savingsCount.getPassword() != password) {
                 return savingsCount;
             }
             viewFunctionBank.errorLogin();
@@ -52,29 +62,19 @@ public class ServiceSavingsBank {
 
     }
 
-    public void serviceCheckSavingsCountCPF(DTOCreateSavingsBank dtoCreateSavingsBank) {
-        long idCPF = dtoCreateSavingsBank.cpf();
-
+    public boolean serviceCheckCPFSizeSavingsBank(long idCPF) {
         if (String.valueOf(idCPF).length() != 11) {
-            viewCreateCountBank.errorCPF();
-            System.exit(0);
+            return false;
         }
-
-        ModelSavingsBank savingsCount = serviceGetSavingsCountCPF(idCPF);
-        if (savingsCount == null) {
-            viewFunctionBank.errorLogin();
-            System.exit(0);
-        }
-        serviceCheckSavingsCountPassword(dtoCreateSavingsBank);
+        return true;
     }
 
-    public static ModelSavingsBank serviceGetSavingsCountCPF(long idCPF) {
-        for (ModelSavingsBank savingsBank : RepositorySavingsBank.savingsCount) {
-            if (savingsBank.getNumberCPF() == idCPF) {
-                return savingsBank;
-            }
-        }
-        return null;
+    public boolean serviceCheckSavingsCountCPF(long idCPF) {
+        return savingsCount.containsKey(idCPF);
+    }
+
+    public ModelSavingsBank serviceCheckSavingsCountCPFReturn(long idCPF) {
+        return savingsCount.get(idCPF);
     }
 
     public void serviceCheckSavingsCountPassword(DTOCreateSavingsBank dtoCreateSavingsBank) {
@@ -114,6 +114,5 @@ public class ServiceSavingsBank {
                 dtoCreateSavingsBank.password()
         );
         repositorySavingsBank.repositorySavingsBankCreate(newCountCreate);
-        viewFunctionBank.displaycount();
     }
 }

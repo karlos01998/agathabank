@@ -28,14 +28,6 @@ public class ControllerFunctionsBank {
         return viewStartBank.displayCreateCountMenuApp();
     }
 
-   /* public void startDisplayMenuCreateCurrentCPF() {
-        long idCPF = viewCreateCountBank.displayCreateCountCurrent();
-    }
-
-    public void startDisplayMenuCreateSavingsCPF() {
-        long idCPF = viewCreateCountBank.displayCreateCountSavingsCPF();
-    }*/
-
     public void exitApp() {
         viewFunctionBank.displayExitApp();
     }

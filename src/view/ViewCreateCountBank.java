@@ -9,26 +9,9 @@ public class ViewCreateCountBank {
     ViewFunctionBank viewFunctionBank = new ViewFunctionBank();
     Scanner write = new Scanner(System.in);
 
-    public int displayCreateCountMenuCountApp() {
-        viewFunctionBank.clearDisplay();
-        System.out.println("""
-                
-                      |- AgathaBank -|
-                
-                
-                
-                    Qual o tipo de Conta:
-                
-                      Conta Corrente [1]
-                      Conta Poupança [2]
-                          SAIR [3]
-                """);
-        return write.nextInt();
-    }
-
     //Telas para Conta Current//
 
-    public DTOCreateCurrentBank displayCreateCountCurrent() {
+    public long displayCheckCPFCreateCountCurrentBank() {
         viewFunctionBank.clearDisplay();
         System.out.println("""
                 
@@ -42,9 +25,12 @@ public class ViewCreateCountBank {
                 
                 
                 """);
-        long cpf = write.nextLong();
+        long idCPF = write.nextLong();
         write.nextLine();
+        return idCPF;
+    }
 
+    public DTOCreateCurrentBank displayCreateCountCurrent(long idCPF) {
         viewFunctionBank.clearDisplay();
         System.out.println("""
                 
@@ -126,10 +112,12 @@ public class ViewCreateCountBank {
                 """);
         int password = write.nextInt();
 
-        return new DTOCreateCurrentBank(cpf, name, year, month, day, password);
+        return new DTOCreateCurrentBank(idCPF, name, year, month, day, password);
     }
 
-    public DTOCreateSavingsBank displayCreateCountSavings() {
+    // Telas para conta poupança
+
+    public long displayCheckCPFCreateCountSavingsBank() {
         viewFunctionBank.clearDisplay();
         System.out.println("""
                 
@@ -143,9 +131,12 @@ public class ViewCreateCountBank {
                 
                 
                 """);
-        long cpf = write.nextLong();
+        long idCPF = write.nextLong();
         write.nextLine();
+        return idCPF;
+    }
 
+    public DTOCreateSavingsBank displayCreateCountSavings(long idCPF) {
         viewFunctionBank.clearDisplay();
         System.out.println("""
                 
@@ -227,11 +218,10 @@ public class ViewCreateCountBank {
                 """);
         int password = write.nextInt();
 
-
-        return new DTOCreateSavingsBank(cpf, name, year, month, day, password);
+        return new DTOCreateSavingsBank(idCPF, name, year, month, day, password);
     }
 
-    public void errorCPF() {
+    public void errorSizeCPF() {
         viewFunctionBank.clearDisplay();
         System.out.println("""
                 
@@ -242,6 +232,23 @@ public class ViewCreateCountBank {
                     Erro no comprimento
                            do CPF
                         
+                
+                
+                
+                """);
+        viewFunctionBank.displayPause();
+    }
+
+    public void errorCheckCPF() {
+        viewFunctionBank.clearDisplay();
+        System.out.println("""
+                
+                      |- AgathaBank -|
+                       
+                
+                
+                            CPF
+                        Ja Existe!
                 
                 
                 
@@ -284,6 +291,4 @@ public class ViewCreateCountBank {
                 """);
         viewFunctionBank.displayPause();
     }
-
-
 }

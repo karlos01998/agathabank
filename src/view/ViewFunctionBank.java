@@ -83,8 +83,8 @@ public class ViewFunctionBank {
                       |- AgathaBank -|
                 
                 
-                
                        Conta Valida!
+                        Faça Login!
                 """);
         displayPause();
     }
@@ -101,6 +101,22 @@ public class ViewFunctionBank {
                 
                 
                       Acesso Bloqueado!
+                """);
+        displayPause();
+    }
+
+    public void errorCPFSize() {
+        System.out.println("""
+                
+                
+                
+                
+                
+                      |- AgathaBank -|
+                
+                
+                
+                   Erro no tamanho do CPF!
                 """);
         displayPause();
     }

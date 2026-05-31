@@ -20,7 +20,7 @@ public class ControllerStartBank {
         int choose = 0;
 
         controllerFunctionsBank.startApp();
-        repositoryCurrentBank.modelCurrentBankCreateInity();
+        repositoryCurrentBank.repositoryCurrentBankCreateInity();
         repositorySavingsBank.modelSavingsBankCreateInity();
 
         choose = controllerFunctionsBank.startDisplayMenu();
@@ -81,7 +81,7 @@ public class ControllerStartBank {
                     break;
 
                 case 2:
-                    controllerLoginSavingsBank.startDisplayMenuLoginSavingsCPF();
+                    controllerCreateSavingsBank.createSavingsBank();
                     break;
 
                 case 3:

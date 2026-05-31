@@ -1,5 +1,6 @@
 package service;
 
+import controller.ControllerLoginCurrentBank;
 import dto.DTOCreateCurrentBank;
 import model.ModelCurrentBank;
 import repository.RepositoryCurrentBank;
@@ -9,6 +10,8 @@ import view.ViewLoginBank;
 
 import java.time.LocalDate;
 import java.time.Period;
+
+import static repository.RepositoryCurrentBank.currentCount;
 
 public class ServiceCurrentBank {
     private final ViewFunctionBank viewFunctionBank = new ViewFunctionBank();
@@ -20,7 +23,14 @@ public class ServiceCurrentBank {
     private int cpfAttempts = 0;
 
     public ModelCurrentBank serviceLoginCurrent(long idCPF) {
-        ModelCurrentBank currentCount = serviceGetCurrentCountCPF(idCPF);
+        boolean check = serviceCheckCPFSizeCurrentBank(idCPF);
+
+        if (check == false) {
+            viewFunctionBank.errorCPFSize();
+            System.exit(0);
+        }
+
+        ModelCurrentBank currentCount = serviceCheckCurrentCountCPFReturn(idCPF);
 
         if (currentCount == null) {
             viewFunctionBank.errorLogin();
@@ -38,7 +48,7 @@ public class ServiceCurrentBank {
         do {
             int password = viewLoginBank.displayLoginCountCurrentPassword();
 
-            if (currentCount.getPassword() == password) {
+            if (currentCount.getPassword() != password) {
                 return currentCount;
             }
             viewFunctionBank.errorLogin();
@@ -52,29 +62,19 @@ public class ServiceCurrentBank {
 
     }
 
-    public void serviceCheckCurrentCountCPF(DTOCreateCurrentBank dtoCreateCurrentBank) {
-        long idCPF = dtoCreateCurrentBank.cpf();
-
+    public boolean serviceCheckCPFSizeCurrentBank(long idCPF) {
         if (String.valueOf(idCPF).length() != 11) {
-            viewCreateCountBank.errorCPF();
-            System.exit(0);
+            return false;
         }
-
-        ModelCurrentBank currentCount = serviceGetCurrentCountCPF(idCPF);
-        if (currentCount == null) {
-            viewFunctionBank.errorLogin();
-            System.exit(0);
-        }
-        serviceCheckCurrentCountPassword(dtoCreateCurrentBank);
+        return true;
     }
 
-    public static ModelCurrentBank serviceGetCurrentCountCPF(long idCPF) {
-        for (ModelCurrentBank currentBank : RepositoryCurrentBank.currentCount) {
-            if (currentBank.getNumberCPF() == idCPF) {
-                return currentBank;
-            }
-        }
-        return null;
+    public boolean serviceCheckCurrentCountCPF(long idCPF) {
+        return currentCount.containsKey(idCPF);
+    }
+
+    public ModelCurrentBank serviceCheckCurrentCountCPFReturn(long idCPF) {
+        return repositoryCurrentBank.currentCount.get(idCPF);
     }
 
     public void serviceCheckCurrentCountPassword(DTOCreateCurrentBank dtoCreateCurrentBank) {
@@ -114,7 +114,5 @@ public class ServiceCurrentBank {
                 dtoCreateCurrentBank.password()
         );
         repositoryCurrentBank.repositoryCurrentBankCreate(newCountCreate);
-        viewFunctionBank.displaycount();
     }
 }
-

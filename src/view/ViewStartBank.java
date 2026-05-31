@@ -36,7 +36,9 @@ public class ViewStartBank {
                       Criar Conta [2]
                          SAIR [3]
                 """);
-        return write.nextInt();
+        int choose = write.nextInt();
+        write.nextLine();
+        return choose;
     }
 
 
@@ -70,6 +72,8 @@ public class ViewStartBank {
                       Conta Poupança [2]
                           SAIR [3]
                 """);
-        return write.nextInt();
+        int choose = write.nextInt();
+        write.nextLine();
+        return choose;
     }
 }

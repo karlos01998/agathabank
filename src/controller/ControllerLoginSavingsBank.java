@@ -8,6 +8,7 @@ public class ControllerLoginSavingsBank {
 
     ViewLoginBank viewLoginBank = new ViewLoginBank();
     ServiceSavingsBank serviceSavingsBank = new ServiceSavingsBank();
+    ControllerCountSavingsBank controllerCountSavingsBank = new ControllerCountSavingsBank();
 
     public void startDisplayMenuLoginSavingsCPF() {
         ModelSavingsBank savingsCount = null;
@@ -17,7 +18,7 @@ public class ControllerLoginSavingsBank {
             savingsCount = serviceSavingsBank.serviceLoginSavings(idCPF);
 
         } while (savingsCount == null);
-        viewLoginBank.countDataTest(savingsCount);
+        controllerCountSavingsBank.displayCountSavings(savingsCount);
     }
 
 }

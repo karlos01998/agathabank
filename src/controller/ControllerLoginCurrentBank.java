@@ -8,6 +8,7 @@ public class ControllerLoginCurrentBank {
 
     ViewLoginBank viewLoginBank = new ViewLoginBank();
     ServiceCurrentBank serviceCurrentBank = new ServiceCurrentBank();
+    ControllerCountCurrentBank controllerCountCurrentBank = new ControllerCountCurrentBank();
 
     public void startDisplayMenuLoginCurrentCPF() {
         ModelCurrentBank currentCount = null;
@@ -17,7 +18,6 @@ public class ControllerLoginCurrentBank {
             currentCount = serviceCurrentBank.serviceLoginCurrent(idCPF);
 
         } while (currentCount == null);
-        viewLoginBank.countDataTest(currentCount);
+        controllerCountCurrentBank.displayCountCurrent(currentCount);
     }
-
 }

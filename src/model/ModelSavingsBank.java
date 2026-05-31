@@ -3,10 +3,6 @@ package model;
 public class ModelSavingsBank extends ModelBank {
     private static final float YELD_RATE = 0.5f;
 
-    public ModelSavingsBank(long cpf, String name, int year, int month, int day) {
-        super(cpf, name, year, month, day);
-    }
-
     public ModelSavingsBank(long cpf, String name, int year, int month, int day, int password, double balance) {
         super(cpf, name, year, month, day, password, balance);
     }
