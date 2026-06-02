@@ -1,6 +1,5 @@
 package service;
 
-import controller.ControllerLoginSavingsBank;
 import dto.DTOCreateSavingsBank;
 import model.ModelSavingsBank;
 import repository.RepositorySavingsBank;
@@ -48,9 +47,13 @@ public class ServiceSavingsBank {
         do {
             int password = viewLoginBank.displayLoginCountSavingsPassword();
 
-            if (savingsCount.getPassword() != password) {
+            // 🔐 CORREÇÃO: Se a senha for IGUAL (==), o login é autorizado com sucesso!
+            if (savingsCount.getPassword() == password) {
+                passwordAttempts = 0; // Reseta o contador para o próximo login
                 return savingsCount;
             }
+
+            // Se a senha for errada, executa o bloco abaixo
             viewFunctionBank.errorLogin();
             passwordAttempts++;
 
@@ -59,7 +62,6 @@ public class ServiceSavingsBank {
         viewFunctionBank.errorLoginExced();
         System.exit(0);
         return null;
-
     }
 
     public boolean serviceCheckCPFSizeSavingsBank(long idCPF) {
@@ -75,6 +77,21 @@ public class ServiceSavingsBank {
 
     public ModelSavingsBank serviceCheckSavingsCountCPFReturn(long idCPF) {
         return savingsCount.get(idCPF);
+    }
+
+    // 🔥 ESPELHAMENTO: Método adicionado para checar o saldo da poupança antes do PIX
+    public boolean serviceCheckValuePixSavingsBank(long idCPF, double valuePix) {
+        ModelSavingsBank modelSavingsCount = serviceCheckSavingsCountCPFReturn(idCPF);
+
+        // Proteção contra NullPointerException caso a conta não seja instanciada
+        if (modelSavingsCount == null) {
+            return false;
+        }
+
+        if (modelSavingsCount.getBalance() < valuePix) {
+            return false;
+        }
+        return true;
     }
 
     public void serviceCheckSavingsCountPassword(DTOCreateSavingsBank dtoCreateSavingsBank) {
@@ -98,7 +115,8 @@ public class ServiceSavingsBank {
 
         int ageNow = Period.between(age, date).getYears();
 
-        if (ageNow < 18 && ageNow > 100) {
+        // 🧠 CORREÇÃO: Mudado de && para || (Se for menor de 18 OU maior de 100)
+        if (ageNow < 18 || ageNow > 100) {
             viewCreateCountBank.errorAge();
             System.exit(0);
         }
@@ -106,7 +124,8 @@ public class ServiceSavingsBank {
     }
 
     public void serviceSavingsBankCreate(DTOCreateSavingsBank dtoCreateSavingsBank) {
-        ModelSavingsBank newCountCreate = new ModelSavingsBank(dtoCreateSavingsBank.cpf(),
+        ModelSavingsBank newCountCreate = new ModelSavingsBank(
+                dtoCreateSavingsBank.cpf(),
                 dtoCreateSavingsBank.name(),
                 dtoCreateSavingsBank.year(),
                 dtoCreateSavingsBank.month(),

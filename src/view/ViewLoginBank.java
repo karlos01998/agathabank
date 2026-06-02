@@ -1,50 +1,45 @@
 package view;
 
-import java.util.Scanner;
-
 import model.ModelCurrentBank;
 import model.ModelSavingsBank;
+import java.util.Scanner;
 
 public class ViewLoginBank {
-
     ViewFunctionBank viewFunctionBank = new ViewFunctionBank();
     Scanner write = new Scanner(System.in);
 
     public int displayLoginMenuCountApp() {
         viewFunctionBank.clearDisplay();
         System.out.println("""
+                =====================================
+                          |- AgathaBank -|
+                          |-   ACESSO    -|
+                =====================================
+                 Selecione a modalidade da conta:
                 
-                      |- AgathaBank -|
-                
-                
-                
-                    Qual o tipo de Conta:
-                
-                      Conta Corrente [1]
-                      Conta Poupança [2]
-                          SAIR [3]
+                    [1] Conta Corrente
+                    [2] Conta Poupança
+                    
+                    [3] Voltar
+                =====================================
                 """);
+        System.out.print(" Opção > ");
         int choose = write.nextInt();
         write.nextLine();
         return choose;
     }
 
-    // Telas de Login Conta Current
-
     public long displayLoginCountCurrentCPF() {
         viewFunctionBank.clearDisplay();
         System.out.println("""
-                
-                      |- AgathaBank -|
-                       Conta Corrente
-                
-                
-                   Digite o CPF para Login:
-                
-                
-                
-                
+                =====================================
+                          |- AgathaBank -|
+                          |- LOGIN CC    -|
+                =====================================
+                   Insira o CPF do titular:
+                =====================================
                 """);
+        System.out.print(" CPF > ");
         long idCPF = write.nextLong();
         write.nextLine();
         return idCPF;
@@ -53,38 +48,30 @@ public class ViewLoginBank {
     public int displayLoginCountCurrentPassword() {
         viewFunctionBank.clearDisplay();
         System.out.println("""
-                
-                      |- AgathaBank -|
-                       Conta Corrente
-                
-                
-                  Digite a SENHA para Login:
-                
-                
-                
-                
+                =====================================
+                          |- AgathaBank -|
+                          |- LOGIN CC    -|
+                =====================================
+                   Insira a senha de acesso:
+                =====================================
                 """);
+        System.out.print(" Senha > ");
         int password = write.nextInt();
         write.nextLine();
         return password;
     }
 
-    //Telas de login Conta Savings
-
     public long displayLoginCountSavingsCPF() {
         viewFunctionBank.clearDisplay();
         System.out.println("""
-                
-                      |- AgathaBank -|
-                       Conta Corrente
-                
-                
-                   Digite o CPF para Login:
-                
-                
-                
-                
+                =====================================
+                          |- AgathaBank -|
+                          |- LOGIN CP    -|
+                =====================================
+                   Insira o CPF do titular:
+                =====================================
                 """);
+        System.out.print(" CPF > ");
         long idCPF = write.nextLong();
         write.nextLine();
         return idCPF;
@@ -93,17 +80,14 @@ public class ViewLoginBank {
     public int displayLoginCountSavingsPassword() {
         viewFunctionBank.clearDisplay();
         System.out.println("""
-                
-                      |- AgathaBank -|
-                       Conta Corrente
-                
-                
-                  Digite a SENHA para Login:
-                
-                
-                
-                
+                =====================================
+                          |- AgathaBank -|
+                          |- LOGIN CP    -|
+                =====================================
+                   Insira a senha de acesso:
+                =====================================
                 """);
+        System.out.print(" Senha > ");
         int password = write.nextInt();
         write.nextLine();
         return password;
@@ -111,24 +95,21 @@ public class ViewLoginBank {
 
     public void countDataTest(ModelCurrentBank conta) {
         System.out.println("""
-                
-                      |- AgathaBank -|
-                       Conta Corrente
-                
+                =====================================
+                          |- AgathaBank -|
+                           Dados de Teste
+                =====================================
                 """);
         System.out.println(conta);
-
     }
 
     public void countDataTest(ModelSavingsBank conta) {
         System.out.println("""
-                
-                      |- AgathaBank -|
-                       Conta Corrente
-                
+                =====================================
+                          |- AgathaBank -|
+                           Dados de Teste
+                =====================================
                 """);
         System.out.println(conta);
-
     }
-
 }

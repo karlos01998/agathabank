@@ -1,6 +1,5 @@
 package controller;
 
-import model.ModelCurrentBank;
 import model.ModelSavingsBank;
 import view.ViewCountSavingsBank;
 import view.ViewFunctionBank;
@@ -10,41 +9,34 @@ public class ControllerCountSavingsBank {
     ViewFunctionBank viewFunctionBank = new ViewFunctionBank();
 
     public void displayCountSavings(ModelSavingsBank modelSavingsBank) {
-        int choose = viewCountSavingsBank.displayCountSavings(modelSavingsBank);
+        int choose = 0;
 
-        switch (choose) {
-            case 1:
-                viewCountSavingsBank.displayCountSavingsBalance(modelSavingsBank);
-                displayCountSavings(modelSavingsBank);
-                break;
+        // 🔥 Espelhado com a Corrente usando DO-WHILE estável
+        do {
+            choose = viewCountSavingsBank.displayCountSavings(modelSavingsBank);
 
-            case 2:
+            switch (choose) {
+                case 1:
+                    viewCountSavingsBank.displayCountSavingsBalance(modelSavingsBank);
+                    break;
 
-                break;
+                case 2:
+                    // Seu extrato de poupança entrará aqui
+                    break;
 
-            case 3:
+                case 3:
+                    ControllerCountSavingsPix controllerCountSavingsPix = new ControllerCountSavingsPix();
+                    controllerCountSavingsPix.startSavingsPix(modelSavingsBank);
+                    break;
 
-                break;
+                case 7:
+                    viewFunctionBank.displayExitApp();
+                    break;
 
-            case 4:
-
-                break;
-
-            case 5:
-
-                break;
-
-            case 6:
-
-                break;
-
-            case 7:
-
-                break;
-
-            default:
-                viewFunctionBank.displayChooseError();
-                break;
-        }
+                default:
+                    viewFunctionBank.displayChooseError();
+                    break;
+            }
+        } while (choose != 7);
     }
 }

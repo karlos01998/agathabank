@@ -1,6 +1,9 @@
 package model;
 
+import dto.DTOTransaction;
+
 import java.util.ArrayList;
+import java.util.List;
 
 abstract class ModelBank {
     private Long numberCPF;
@@ -25,6 +28,17 @@ abstract class ModelBank {
         this.balance = balance;
     }
 
+    //metodos de extrato
+    private List<DTOTransaction> extract = new ArrayList<>();
+
+    public void addTransactionToExtract(String name, String nameReceiver, double value) {
+        this.extract.add(new DTOTransaction(name, nameReceiver, value));
+    }
+
+    public List<DTOTransaction> getExtract() {
+        return this.extract;
+    }
+
     ArrayList<ModelBank> bankCount = new ArrayList<>();
 
     public ModelBank getCountCPF(long cpf) {
@@ -34,14 +48,6 @@ abstract class ModelBank {
             }
         }
         return null;
-    }
-
-    public boolean getCountLogin(long cpf, int password) {
-        ModelBank conta = getCountCPF(cpf);
-        if (conta != null && conta.getPassword() == password) {
-            return true;
-        }
-        return false;
     }
 
     @Override

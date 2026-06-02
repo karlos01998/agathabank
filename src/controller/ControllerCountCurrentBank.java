@@ -7,43 +7,40 @@ import view.ViewFunctionBank;
 public class ControllerCountCurrentBank {
     ViewCountCurrentBank viewCountCurrentBank = new ViewCountCurrentBank();
     ViewFunctionBank viewFunctionBank = new ViewFunctionBank();
+    // Instancia localmente para evitar dependência circular global
 
     public void displayCountCurrent(ModelCurrentBank modelCurrentBank) {
-        int choose = viewCountCurrentBank.displayCountCurrent(modelCurrentBank);
+        int choose = 0;
 
-        switch (choose) {
-            case 1:
+        // 🔥 O laço DO-WHILE controla o menu sem empilhar memória RAM
+        do {
+            choose = viewCountCurrentBank.displayCountCurrent(modelCurrentBank);
+
+            switch (choose) {
+                case 1:
                     viewCountCurrentBank.displayCountCurrentBalance(modelCurrentBank);
-                    displayCountCurrent(modelCurrentBank);
-                break;
+                    // REMOVIDO: displayCountCurrent(modelCurrentBank);
+                    break;
 
-            case 2:
+                case 2:
+                    viewCountCurrentBank.displayCountCurrentExtract(modelCurrentBank);
+                    break;
 
-                break;
+                case 3:
+                    // Cria a instância no momento do clique para não dar loop na inicialização das classes
+                    ControllerCountCurrentPIX controllerCountCurrentPIX = new ControllerCountCurrentPIX();
+                    controllerCountCurrentPIX.startCurrentPix(modelCurrentBank);
+                    // Quando o PIX terminar, o laço WHILE automaticamente mostrará o menu de volta!
+                    break;
 
-            case 3:
+                case 7:
+                    viewFunctionBank.displayExitApp();
+                    break;
 
-                break;
-
-            case 4:
-
-                break;
-
-            case 5:
-
-                break;
-
-            case 6:
-
-                break;
-
-            case 7:
-
-                break;
-
-            default:
-                viewFunctionBank.displayChooseError();
-                break;
-        }
+                default:
+                    viewFunctionBank.displayChooseError();
+                    break;
+            }
+        } while (choose != 7); // Repete o menu até o usuário digitar 7
     }
 }

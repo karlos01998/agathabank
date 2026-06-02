@@ -8,16 +8,12 @@ public class ViewStartBank {
 
     public void displayStartApp() {
         System.out.println("""
+                =====================================
                 
-                
-                
-                
-                
-                      |- AgathaBank -|
-                
-                
-                
-                
+                          |- AgathaBank -|
+                    Sua plataforma financeira terminal
+                    
+                =====================================
                 """);
         viewFunctionBank.displayPause();
     }
@@ -25,53 +21,39 @@ public class ViewStartBank {
     public int displayStartMenuApp() {
         viewFunctionBank.clearDisplay();
         System.out.println("""
+                =====================================
+                          |- AgathaBank -|
+                =====================================
+                 Selecione uma operação para iniciar:
                 
-                      |- AgathaBank -|
-                
-                
-                
-                  Digite a opcao desejada:
-                
-                      Fazer Login [1]
-                      Criar Conta [2]
-                         SAIR [3]
+                    [1] Entrar na minha Conta
+                    [2] Criar uma nova Conta
+                    
+                    [3] Sair do Sistema
+                =====================================
                 """);
+        System.out.print(" Opção > ");
         int choose = write.nextInt();
         write.nextLine();
         return choose;
     }
 
-
-
-    public void displayLoginError() {
-        System.out.println("""
-                
-                      |- AgathaBank -|
-                       
-                
-                            ERRO!
-                            
-                      Dados INCORRETOS!
-                
-                
-                
-                """);
-    }
-
     public int displayCreateCountMenuApp() {
         viewFunctionBank.clearDisplay();
         System.out.println("""
+                =====================================
+                          |- AgathaBank -|
+                          |- NOVA CONTA  -|
+                =====================================
+                 Escolha a categoria que deseja abrir:
                 
-                      |- AgathaBank -|
-                
-                
-                
-                  Qual Conta deseja abrir:
-                
-                      Conta Corrente [1]
-                      Conta Poupança [2]
-                          SAIR [3]
+                    [1] Conta Corrente
+                    [2] Conta Poupança
+                    
+                    [3] Voltar ao Início
+                =====================================
                 """);
+        System.out.print(" Opção > ");
         int choose = write.nextInt();
         write.nextLine();
         return choose;

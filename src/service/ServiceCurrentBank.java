@@ -1,6 +1,5 @@
 package service;
 
-import controller.ControllerLoginCurrentBank;
 import dto.DTOCreateCurrentBank;
 import model.ModelCurrentBank;
 import repository.RepositoryCurrentBank;
@@ -75,6 +74,14 @@ public class ServiceCurrentBank {
 
     public ModelCurrentBank serviceCheckCurrentCountCPFReturn(long idCPF) {
         return repositoryCurrentBank.currentCount.get(idCPF);
+    }
+
+    public boolean serviceCheckValuePixCurrentBank(long idCPF, double valuePix) {
+        ModelCurrentBank modelCurrentCount =  serviceCheckCurrentCountCPFReturn(idCPF);
+        if (modelCurrentCount.getBalance() <  valuePix) {
+            return false;
+        }
+        return true;
     }
 
     public void serviceCheckCurrentCountPassword(DTOCreateCurrentBank dtoCreateCurrentBank) {
