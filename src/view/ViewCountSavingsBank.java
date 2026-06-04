@@ -1,8 +1,11 @@
 package view;
 
+import dto.DTOTransaction;
+import model.ModelCurrentBank;
 import model.ModelSavingsBank;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -28,7 +31,6 @@ public class ViewCountSavingsBank {
                   [1] Saldo 
                   [2] Extrato 
                   [3] Fazer Pix 
-                  [4] Perfil 
                   
                   [7] SAIR
                 =====================================
@@ -52,6 +54,35 @@ public class ViewCountSavingsBank {
         System.out.println("""
                 =====================================
                 """);
+        viewFunctionBank.displayPause();
+    }
+
+    public void displayCountSavingsExtract(ModelSavingsBank modelSavingsBank) {
+        viewFunctionBank.clearDisplay();
+        System.out.println("""
+            =====================================
+                      |- AgathaBank -|
+                      |-  EXTRATO   -|
+            =====================================
+            
+             [ HISTÓRICO DE TRANSAÇÕES ]
+            """);
+
+        List<DTOTransaction> listaTransacoes = modelSavingsBank.getExtract();
+
+        if (listaTransacoes == null || listaTransacoes.isEmpty()) {
+            System.out.println("   Nenhuma transação localizada.");
+        } else {
+            for (DTOTransaction t : listaTransacoes) {
+                // Agora o .value() vai puxar o double perfeitamente do record!
+                System.out.printf("  --> De: %s | Para: %s | R$ %.2f%n",
+                        t.name(), t.nameReceiver(), t.value());
+            }
+        }
+
+        System.out.println("""
+            =====================================
+            """);
         viewFunctionBank.displayPause();
     }
 }

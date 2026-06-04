@@ -11,7 +11,6 @@ public class ControllerCountSavingsBank {
     public void displayCountSavings(ModelSavingsBank modelSavingsBank) {
         int choose = 0;
 
-        // 🔥 Espelhado com a Corrente usando DO-WHILE estável
         do {
             choose = viewCountSavingsBank.displayCountSavings(modelSavingsBank);
 
@@ -21,7 +20,7 @@ public class ControllerCountSavingsBank {
                     break;
 
                 case 2:
-                    // Seu extrato de poupança entrará aqui
+                    viewCountSavingsBank.displayCountSavingsExtract(modelSavingsBank);
                     break;
 
                 case 3:

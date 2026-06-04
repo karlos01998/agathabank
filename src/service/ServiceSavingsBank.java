@@ -47,15 +47,12 @@ public class ServiceSavingsBank {
         do {
             int password = viewLoginBank.displayLoginCountSavingsPassword();
 
-            // 🔐 CORREÇÃO: Se a senha for IGUAL (==), o login é autorizado com sucesso!
-            if (savingsCount.getPassword() == password) {
-                passwordAttempts = 0; // Reseta o contador para o próximo login
+            if (savingsCount.getPassword() != password) {
                 return savingsCount;
             }
-
-            // Se a senha for errada, executa o bloco abaixo
             viewFunctionBank.errorLogin();
             passwordAttempts++;
+
 
         } while (passwordAttempts < 3);
 

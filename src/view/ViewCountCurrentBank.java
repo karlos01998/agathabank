@@ -31,9 +31,6 @@ public class ViewCountCurrentBank {
                   [1] Saldo 
                   [2] Extrato 
                   [3] Fazer Pix 
-                  [4] Perfil 
-                  [5] Cartão
-                  [6] Empréstimo
                   
                   [7] SAIR
                 =====================================
